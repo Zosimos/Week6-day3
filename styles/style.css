@@ -1,7 +1,6 @@
 h1{
     text-align: center;
-    color: rgb(29, 53, 185);
-    background-color: white;
+    color: rgb(0, 2, 10);
     
 }
 
@@ -14,21 +13,22 @@ html, body{
 .main-container {
     display: flex;
     height: calc(100vh - 80px);
-    
+    background-image: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png');
+    background-size: cover;
 }
 
 #secList {
     flex: 2;
-    background-color: rgb(56, 158, 161);
+    background-color: rgba(56, 157, 161, 0.205);
 }
 
 #secForm {
     flex:1;
-    background-color: rgb(149, 175, 88);
+    background-color: rgba(255, 255, 255, 0.753);
 }
 
 footer {
-    background-color: rgb(136, 136, 211);
+    background-color: rgba(136, 136, 211, 0.116);
     height:30px;
 }
 
@@ -55,3 +55,49 @@ nav{
     
 }
 
+.pTask{
+    display:flex;
+    margin: 5px;
+    border: 5px solid black;
+    border-radius: 5px;
+    background-color: #43bccdff;
+}
+
+.pTask .titleTask{
+    flex:1;
+    text-align: center;
+    margin:auto;    
+}
+.pTask .descTask{
+    border-left: 3px solid black;
+    flex:3;
+}
+.pTask .dateTask{
+    border-left: 3px solid black;
+    flex:1;
+}
+.pTask .catTask{
+    border-left: 3px solid black;
+    flex:1;
+}
+.pTask .priTask{
+    border-left: 3px solid black;
+    flex:1;
+}
+.pTask .costTask{
+    border-left: 3px solid black;
+    flex:1;
+}
+.pTask label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.pTask p{
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.pTask i{
+    font-size: 25px;
+    margin:auto;
+}

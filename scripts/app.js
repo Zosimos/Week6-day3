@@ -41,7 +41,7 @@ function saveTask() {
 
     //create a new instance of Task (object)
 
-    let newTask = new Task(
+    let task = new Task(
         isImportant,
         title,
         description,
@@ -50,7 +50,39 @@ function saveTask() {
         priority,
         cost
     );
-    console.log(newTask);
+    console.log(task);
+    displayTask(task);
+}
+
+function displayTask(task) {
+    let syntax = `
+    <div class="pTask">
+    <i class="fa-regular fa-star"></i>
+    <div class="titleTask">
+    <h5>${task.title}</h5>
+    </div>
+    <div class="descTask">
+    <label>Description:</label>
+    <p>${task.description}<p>
+    </div>
+    <div class="dateTask">
+    <label>Date:</label>
+    <p>${task.dueDate}</p>
+    </div>
+    <div class="catTask">
+    <label>Category:</label>
+    <p>${task.category}</p>
+    </div>
+    <div class="priTask">
+    <label>Priority:</label>
+    <p>${task.priority}</p>
+    </div>
+    <div class="costTask">
+    <label>Cost:</label>
+    <p>${task.cost}</p>
+    </div>
+    </div>`;
+    $("#pendingTasks").append(syntax);
 }
 
 function toggleDetails() {
