@@ -3,15 +3,6 @@ const importantIcon = "fa-solid fa-star";
 var isImportant = false;
 var isVisible = true;
 
-function init() {
-    console.log("Task Manager");
-    $("#topIcon").click(toggleImportant);
-    $("#btnSave").click(saveTask);
-    $("#btnToggleDetails").click(toggleDetails);
-}
-
-window.onload = init;
-
 // console log a message when the user clicks on the icon
 //add an id to the icon
 //catch the click event on the icon, (on init fn)
@@ -51,7 +42,36 @@ function saveTask() {
         cost
     );
     console.log(task);
-    displayTask(task);
+
+    //create a post request to: https://fsdiapi.azurewebsites.net/api/tasks/
+    $.ajax({
+        type: "post",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks/",
+        data: JSON.stringify(task),
+        contentType: "application/json",
+        success: function (data) {
+            displayTask(task);
+            console.log("Server says", data);
+        },
+        error: function (error) {
+            console.log("Save failed", error);
+            alert("Error, task not saved");
+        },
+    });
+}
+function postRequest() {
+    $.ajax({
+        type: "post",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks/",
+        data: JSON.stringify(task),
+        contentType: "application/json",
+        success: function (data) {
+            console.log("Server says", data);
+        },
+        error: function (error) {
+            console.log("Save failed", error);
+        },
+    });
 }
 
 function displayTask(task) {
@@ -95,7 +115,40 @@ function toggleDetails() {
         isVisible = true;
     }
 }
-
+//server commands. call ajax with jquery, then curly brackets with "type" of command and URL. Types get, post, put, push, remove. Success/error - error executes function you define if there is an error. Success executes function if successful
+function fetchTasks() {
+    //send get request
+    //console log the server results
+    $.ajax({
+        type: "get",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks",
+        success: function (data) {
+            let all = JSON.parse(data); //will parse json string into js obj/array
+            //console.log(all);
+            //for loop will travel the array of data and now able to display the data
+            for (let i = 0; i < all.length; i++) {
+                let task = all[i];
+                //show only your own tasks on display
+                if (task.name === "Jim") {
+                    displayTask(task);
+                }
+            }
+        },
+        error: function (error) {
+            console.log("Request error", error);
+        },
+    });
+}
 //homework read about git and github
 
 //creat a button with hide/show, call a function toggle details, and console log something there
+
+function init() {
+    fetchTasks();
+    console.log("Task Manager");
+    $("#topIcon").click(toggleImportant);
+    $("#btnSave").click(saveTask);
+    $("#btnToggleDetails").click(toggleDetails);
+}
+
+window.onload = init;

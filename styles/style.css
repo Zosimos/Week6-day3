@@ -12,7 +12,7 @@ html, body{
 
 .main-container {
     display: flex;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     background-image: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png');
     background-size: cover;
 }
@@ -24,7 +24,7 @@ html, body{
 
 #secForm {
     flex:1;
-    background-color: rgba(255, 255, 255, 0.753);
+    background-color: rgba(148, 148, 161, 0.753);
 }
 
 footer {
